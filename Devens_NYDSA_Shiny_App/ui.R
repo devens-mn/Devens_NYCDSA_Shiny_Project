@@ -10,11 +10,7 @@ shinyUI(fluidPage(
     # Sidebar with a slider input for number of bins
     sidebarLayout(
         sidebarPanel(
-            #                       selectize input for thing to analyze
-            selectizeInput(inputId = 'qty_to_analyze',
-                           label = "Quantity to analyze",
-                           choices = qtys_to_analyze),
-            #                       selectize input for variable to analyze by
+            #   selectize input for variable to analyze by
             selectizeInput(inputId = 'var_to_analyze_by',
                            label = "Variable by which to analyze",
                            choices = var_to_analyze_by)
@@ -22,7 +18,9 @@ shinyUI(fluidPage(
         
         # Show a plot of the generated distribution
         mainPanel(
-            plotOutput("plotout")
+                plotOutput('plotvisits', height = "200px")
+                , plotOutput('plotwinpct', height = "200px")
+                , plotOutput("plotrev", height = "200px")
         )
     )
 ))
