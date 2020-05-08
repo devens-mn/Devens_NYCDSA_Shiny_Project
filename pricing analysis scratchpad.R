@@ -66,7 +66,7 @@ ggplot(g) + geom_col(aes(x = source, y = winpct)) + geom_point(aes(x = source,
 cleanpromo = promo %>% filter(., !nas)
 
 # join user data to clean promo and call it userclean
-userclean = left_join(cleanpromo, user, by = "user_id")
+userclean = full_join(cleanpromo, user, by = "user_id")
 summary(userclean)
 
 # count to figure out if some levels of factors didn't get same number of 0s
