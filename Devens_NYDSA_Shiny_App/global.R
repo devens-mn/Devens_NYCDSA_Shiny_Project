@@ -3,6 +3,7 @@ library(shinydashboard)
 library(dplyr)
 library(lubridate)
 library(tidyverse)
+library(ggthemes)
 
 # read in data (works for now)
 promo = read_csv('../promo_results.csv', col_names = TRUE)
@@ -33,6 +34,7 @@ usepromo = usepromo %>% filter(., !nas & !statena)
 vsts_var_to_analyze_by = colnames(usepromo)[c(3,4,9,12)]
 rev_var_to_analyze_by = colnames(usepromo)[c(3,4,9,12)]
 bk_var_to_analyze_by = colnames(usepromo)[c(3,4,9,12)]
+price_to_anlyz_by = c(199, 299)
 
 # logistic regression model
 # create factors from current integer(days) or character variables
@@ -63,6 +65,19 @@ testData = rbind(test_ones, test_zeros)
 #create logistic model
 logitmodeltest = glm(booked ~ source + price, 
                      data = trainingData, family = 'binomial'(link = 'logit'))
+# getsw prop test
+prptst1 = function(price_to_anlyz_by) {
+  g = usepromo %>% filter(., price == price_to_anlyz_by) %>% 
+  group_by(., source) %>% 
+  summarise(., Bookings = sum(booked), Visits = n())  
+  return(prop.test(g$Bookings, g$Visits))
+}
+prptst2 = function(price_to_anlyz_by) {
+  g = usepromo %>% filter(., price == price_to_anlyz_by) %>% 
+    group_by(., device) %>% 
+    summarise(., Bookings = sum(booked), Visits = n())  
+  return(prop.test(g$Bookings, g$Visits))
+}
 
 
 
