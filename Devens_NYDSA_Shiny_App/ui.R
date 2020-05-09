@@ -40,6 +40,10 @@ shinyUI(dashboardPage(
                     label = "Examine distribution of visits by",
                     choices = vsts_var_to_analyze_by)
                 ,plotOutput('plotvisits', height = "200px")
+                ,p('')
+                ,p('E-mail: dadevens@gmail.com')
+                ,p('GitHub:  devens-mn/Devens_NYCDSA_Shiny_Project ')
+                ,p('linkedin.com/in/dougdevens')
                     )
             ,tabItem(tabName = "EconomicAnalysis",
                 h1('Economic Analysis of the Pricing Experiment')
@@ -140,6 +144,9 @@ shinyUI(dashboardPage(
                         Unknown again has the highest likelihood of purchase, thus confirming the
                         importance of learning the source of those referrals.')
                      ,verbatimTextOutput('prntmodel')
+                     ,p('Further analysis of the logistic regression model shows an AUROC of
+                        57.33%, little better than random chance. It had a sensitivity of
+                        15.2%, and a specificity of 89.8%.')
                 )
             ,tabItem(tabName = "Recommendations",
                      h1('Recommendations for future action')
@@ -147,11 +154,11 @@ shinyUI(dashboardPage(
                      ,p('We have examined the economic outcome of a price increase
                         of a leisure activity and developed a demand elasticity relationship
                         (see Purchasing Analysis.)
-                        We observed -0.3 decrease in the odds ratio for purchase as the price
-                        increased $100.  The reduced likelihood of purchase was more than
+                        We observed 13% decrease in likelihood of purchase as the price
+                        increased $100.  However, the reduced likelihood of purchase was more than
                         compensated by the increase in revenue from the higher price.
-                        Similarly, the decrease in the odds ratio for purchase
-                        in coming from Facebook instead of Google Adwords is -0.68.')
+                        Similarly, the decrease in the likelihood of purchase
+                        in coming from Facebook instead of Google Adwords 22% at the $299 price.')
                      ,h4('Recommendations')
                         ,p('We recommend moving to a price of $299 since this increased
                         both revenue and gross profit with only a small decrease in
@@ -164,8 +171,9 @@ shinyUI(dashboardPage(
                          tags$li('Investigate a better means of learning the referral source
                             to the website.  The Unknown category had the highest
                             propensity to purchase, yet it is unexploitable.')
-                         ,tags$li('Put more promotions/ads on Google Adwords/Ads.  Visitors from this
-                             referral source have the highest propensity to buy (for
+                         ,tags$li('Determine how to steer more visitors from Google Adwords/Ads
+                            such as with further research and purchase of search terms.  
+                            Visitors from this referral source have the highest propensity to buy (for
                              known sources), and their propensity is minimally reduced at $299,
                              indicating the potential for future price increases.')
                      )

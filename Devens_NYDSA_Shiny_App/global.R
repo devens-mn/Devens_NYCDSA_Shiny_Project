@@ -4,10 +4,12 @@ library(dplyr)
 library(lubridate)
 library(tidyverse)
 library(ggthemes)
+library(stats)
+library(rsconnect)
 
 # read in data (works for now)
-promo = read_csv('../promo_results.csv', col_names = TRUE)
-user = read_csv('../user_data.csv', col_names = TRUE)
+promo = read_csv('promo_results.csv', col_names = TRUE)
+user = read_csv('user_data.csv', col_names = TRUE)
 
 # format dates in promo data
 promo$date = mdy(promo$date) #change date format to date, in case I need it

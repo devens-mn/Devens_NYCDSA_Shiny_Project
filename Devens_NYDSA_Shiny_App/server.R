@@ -22,8 +22,11 @@ function(input, output) {
             ggplot(., aes_string(x=input$bk_var_to_analyze_by, y='winpct')) +
             geom_col(aes(fill = as.character(price)), position = 'dodge')
             + ggtitle('Total number of booked activities, by price')
-            + ylab('Count of booked activities') + scale_fill_discrete(name = 'Price',
-                labels=c('$199', '$299')) + scale_fill_brewer() + theme_clean()
+            + ylab('Count of booked activities') + scale_fill_brewer(name = 'Price',
+                labels=c('$199', '$299')) + theme_classic() 
+                + theme(axis.title.x = element_text(size=14),
+                axis.text.x  = element_text(size=14),
+                axis.text.y  = element_text(size=14))
     )
     output$plotrev = renderPlot(
         usepromo %>% 
@@ -32,8 +35,11 @@ function(input, output) {
             ggplot(., aes_string(x=input$rev_var_to_analyze_by, y='revsum')) +
             geom_col(aes(fill = as.character(price)), position = 'dodge')
             + ggtitle('Revenues generated per 100 visits, by price')
-            + ylab('Revenues in US Dollars, $') + scale_fill_discrete(name = 'Price',
-                labels=c('$199', '$299')) + scale_fill_brewer() + theme_clean()
+            + ylab('Revenues in US Dollars, $') + scale_fill_brewer(name = 'Price',
+                labels=c('$199', '$299')) + theme_classic() 
+                + theme(axis.title.x = element_text(size=14),
+                axis.text.x  = element_text(size=14),
+                axis.text.y  = element_text(size=14))
     )
     output$plotbkngs = renderPlot(
         usepromo %>% 
@@ -42,8 +48,11 @@ function(input, output) {
             ggplot(., aes_string(x=input$rev_var_to_analyze_by, y='bksums')) +
             geom_col(aes(fill = as.character(price)), position = 'dodge')
             + ggtitle('Number of bookings per 100 visits, by price')
-            + ylab('Count of bookings') + scale_fill_discrete(name = 'Price',
-                labels=c('$199', '$299')) + scale_fill_brewer() + theme_clean()
+            + ylab('Count of bookings') + scale_fill_brewer(name = 'Price',
+                labels=c('$199', '$299')) + theme_classic() 
+                + theme(axis.title.x = element_text(size=14),
+                axis.text.x  = element_text(size=14),
+                axis.text.y  = element_text(size=14))
     )
     output$plotttlvsts = renderPlot(
         usepromo %>% 
@@ -51,7 +60,10 @@ function(input, output) {
             summarise(., ttlvsts = n()) %>%
             ggplot(., aes_string(x=input$bk_var_to_analyze_by, y='ttlvsts')) +
             geom_col() + ggtitle('Total visits during experiment') + 
-            ylab('Count of all visits') + scale_fill_brewer() + theme_clean()
+            ylab('Count of all visits') + scale_fill_brewer() + theme_classic() 
+                + theme(axis.title.x = element_text(size=14),
+                axis.text.x  = element_text(size=14),
+                axis.text.y  = element_text(size=14))
     )
     output$tblsource = renderTable(
         usepromo %>% filter(., price == input$price_to_anlyz_by) %>% group_by(., source) %>% 
