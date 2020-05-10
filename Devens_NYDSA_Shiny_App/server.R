@@ -21,7 +21,7 @@ function(input, output) {
             summarise(., winpct = 100*sum(booked)/n()) %>%
             ggplot(., aes_string(x=input$bk_var_to_analyze_by, y='winpct')) +
             geom_col(aes(fill = as.character(price)), position = 'dodge')
-            + ggtitle('Total number of booked activities, by price')
+            + ggtitle('Number of booked activities per 100 visits, by price')
             + ylab('Count of booked activities') + scale_fill_brewer(name = 'Price',
                 labels=c('$199', '$299')) + theme_classic() 
                 + theme(axis.title.x = element_text(size=14),
